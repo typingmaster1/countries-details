@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+<table class="table bg-dark">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Capital</th>
+            <th>Population</th>
+            <th>Flag</th>
+            <th>Continents</th>
+            <!-- <th></th> -->
+
+        </tr>
+    </thead>
+    <tbody id="result"></tbody>
+</table>
+
+
+
+
+
+    <script>
+    $.ajax({
+        url:"https://restcountries.com/v3.1/all",
+        type:"get",
+        success:function(data){
+            let rs="";
+            for(i in data){
+            rs +="<tr>";
+                // rs +="<td>"+data[i].name+"</td>";
+                rs +="<td>"+i+"</td>";
+                rs +="<td>"+data[i].altSpellings+ "</td>";
+                // rs +="<td>"+data[i].currencies+ "</td>";
+                
+                rs +="<td>"+data[i].capital+"</td>";
+                rs +="<td>"+data[i].population+"</td>";
+                rs +="<td> <img src="+data[i].flags.png+" style=height:60px;width:100% > </td>";
+                rs +="<td>"+data[i].continents+ "</td>";
+
+                }
+                document.getElementById("result").innerHTML=rs;
+        }
+
+    })
+</script>
+</body>
+<script src=""></script>
+</html>
